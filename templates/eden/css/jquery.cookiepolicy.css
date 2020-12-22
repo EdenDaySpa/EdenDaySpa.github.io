@@ -1,0 +1,28 @@
+.cookiepolicy {
+	bottom: 0;
+	z-index: 100;
+	font: 14px Arial, Helvetica, sans-serif;
+	left: 0;
+	padding: 15px 50px;
+	position: fixed;
+	right: 0;
+	text-align: center;
+	background-color: rgba(255, 255, 255, 0.8);
+}
+.cookiepolicyImg{
+	float:left;
+	margin-right:20px;
+	min-height:100px;
+	min-width:82px;
+	background-image: url(http://www.edendayspa.pl/public/img/cookies.png);
+	
+}
+.cookiepolicy .button {
+	float:right;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	color: #fff;
+	cursor: pointer;
+	margin-left: 20px;
+	margin-top:40px;
+}
