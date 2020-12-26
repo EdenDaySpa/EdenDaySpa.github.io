@@ -147,7 +147,7 @@ html,body
 	right: 0;
 	top: 0;
 	overflow: hidden;
-	background-color: rgba(255, 255, 255, 0.3);
+	background-color: rgba(255, 255, 255, 1);
 	background-image: none;
 	font-size: 25px;
 	z-index: 1000000;
@@ -959,7 +959,7 @@ nav.navbar {
 .nav.navbar-nav a{
 	font-size: 14px;
     letter-spacing: 1px;
-    font: normal 12px 'trajan pro','times new roman',serif;
+    font: normal 18px 'trajan pro','times new roman',serif;
     text-transform: uppercase !important;
     text-decoration: none !important;
     color: #31251e !important;
@@ -1157,3 +1157,4 @@ a:hover {
 .desc-full{
 	margin-bottom: 15px;
 }
+
