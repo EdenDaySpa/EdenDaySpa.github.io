@@ -32,6 +32,8 @@ function parallax()
 	var scrollElem = ((navigator.userAgent.toLowerCase().indexOf('webkit') != -1) ? 'body' : 'html'),
 		viewportTop = $(scrollElem).scrollTop(),
 		viewportBottom = (viewportTop + windowHeight);
+	
+
 
 	$('.parallax').each(function() {
 		var $container = $(this);
@@ -40,6 +42,14 @@ function parallax()
 		var containerTop = $container.offset().top;
 		var containerPercentTop = (containerTop - viewportTop) / windowHeight;
 		var newY = start + (end - start) * containerPercentTop;
+		/*
+		console.log("windowHeight: " + windowHeight);
+		console.log("viewportTop: " + viewportTop);
+		console.log("containerTop) " + containerTop);
+		console.log("containerPercentTop)" + containerPercentTop);
+		console.log("newY)" + newY);
+		console.log("-------------------------");	
+		*/
 		$container.css('background-position', '50% ' + newY + '%');
 	});
 }
