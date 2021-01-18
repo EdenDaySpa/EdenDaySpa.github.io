@@ -2389,145 +2389,42 @@ Zabieg usuwania produktu należy wykonywac w salonie.</div>
 
 
 		
-		//function get_computed_style_height_unhide(div_element) {
-		//	var computed_style = window.getComputedStyle(div_element);
-		//	var computed_blocksize = computed_style.getPropertyValue("block-size");
-		//	var computed_height = computed_style.getPropertyValue("height");
-		//	console.log("computed_blocksize: " + computed_blocksize);
-		//	console.log("computed_height: " + computed_height);
-		//}
-
-
 		
+		$(this).on('unload', function(){
+			console.log('smth');
+			for (let i = 0; i < localStorage.length; i++){        
+				let key = this.localStorage.key(i);
+				console.log(key);
+				if(key == "zabiegi-specjalne" || key == "bestsellery" || key == "pakiety"){
+					this.localStorage.removeItem(key);
+				}
 
-		//https://stackoverflow.com/questions/1473584/need-to-find-height-of-hidden-div-on-page-set-to-displaynone
-		function get_height_of_hidden_div(div_element){
-			var computed_style = window.getComputedStyle(div_element),
+			}
 			
-			//storing values to revert changes made later
-			computed_style_display = computed_style.getPropertyValue("display"),
-			computed_style_postion = computed_style.getPropertyValue("position"), 
-			computed_style_visibility = computed_style.getPropertyValue("visibility"),
-			computed_style_max_height = computed_style.getPropertyValue("max_height").replace("px", "").replace("%", "");
-
-			//logging initial values
-			console.log("computed_style_display: " + computed_style_display);
-			console.log("computed_style_postion: " + computed_style_postion);
-			console.log("computed_style_visibility: " + computed_style_visibility);
-			//console.log("computed_style_max_height : " + computed_style_max_height );
-			console.log("document_height: " + document.documentElement.offsetHeight);
-
-
-			//making the block but keeping it hidden to measure
-			div_element.style.display ='block';
-			div_element.style.position = 'absolute';
-			div_element.style.visibility = 'hidden';
-			
-			var measured_height = div_element.offsetHeight;			
-			console.log("measured_height: " + measured_height); 	
-
-
-			//logging values after changes
-			console.log("display: " + computed_style.getPropertyValue("display"));
-			console.log("position: " + computed_style.getPropertyValue("position")); 
-			console.log("visibility: " + computed_style.getPropertyValue("visibility"));
-                        //console.log("max_height" + computed_style.getPropertyValue("max_height").replace("px", "").replace("%", ""));
-			console.log("document_height: " + document.documentElement.offsetHeight);
+		});
 
 
 
-			//reverting changes to initial state 
-			div_element.style.display = computed_style_display;
-			div_element.style.position = computed_style_postion;
-			div_element.style.visibility = computed_style_visibility;
-			
 
-			//logging values after reverting changes to initial state	
-			console.log("display: " + computed_style.getPropertyValue("display"));
-                        console.log("position: " + computed_style.getPropertyValue("position")); 
-                        console.log("visibility: " + computed_style.getPropertyValue("visibility"));
-                        console.log("max_height: " + computed_style.getPropertyValue("max_height").replace("px", "").replace("%", ""));
-
-			return 	measured_height; 
-		}
-
-
-//
-//		function wait_until_document_height_correct(correct_document_height){
-//			console.log("correct_document_height: " + correct_document_height);
-//			console.log("document.documentElement.offsetHeight: " + document.documentElement.offsetHeight);
-//
-//			while(document.documentElement.offsetHeight <= correct_document_height){
-//			
-//				console.log("waiting for correct document height...");
-//				correct_document_height = document.documentElement.offsetHeight-10;
-//
-//			}
-//			console.log("======= waiting for correc document height finished =====");
-//
-//		}
-//
-//
-//
-//
-//		function wait_until_div_unhide(div_element, offset_height){
-//			console.log("div_element.offsetHeight: " + div_element.offsetHeight);	
-//			console.log("offset_height: " + offset_height);
-//			while(div_element.offsetHeight == 0 || div_element.offsetHeight > offset_height){										
-//				offset_height = div_element.offsetHeight;
-//				console.log("waiting....");
-//			}
-//			console.log("=========waiting_finished============");
-//			return document.documentElement.offsetHeight;
-//		}
-//
-//
-//
-//
-//		function calc_dist(element){
-//			var nav_height = 1.05 * document.getElementsByTagName("nav")[0].getBoundingClientRect().height;
-//			var element_position = element.getBoundingClientRect().top; 	
-//			var px_to_scroll = element_position - nav_height;	
-//			var max_px_to_scroll = Math.max(document.documentElement.scrollHeight - window.innerHeight, 0);	
-//			var px_to_scroll_after_check = Math.min(px_to_scroll, max_px_to_scroll);
-//			return  px_to_scroll_after_check;
-//		}
-//
-//
-//
-//
 
 		$(this).on('load', function() {
-			console.log('laduje');
-			console.log(localStorage);
 			
-			var element_id = null;
-
-
-
 			if(localStorage.getItem("zabiegi-specjalne") != null)
 			{
-				console.log("zabiegi-specjalne");
-		  		console.log(document.localStorage.getItem("zabiegi-specjalne"));
-
 				this.localStorage.clear();
 			}
 			
 			else if(localStorage.getItem("bestsellery")!=null)
 			{
+				
 				var value = this.localStorage.getItem("bestsellery"); 
+				console.log(value);
 				if(value == "lipomassage" || value ==  "Thermolifting-Zaffiro" || value == "Body-Rewind")
 				{
 			 		var inner_value = value.concat("_wewnetrzna");
 					document.getElementById(value).click();
-					
-					invoked_by_scrolling_script = true;
 					document.getElementById(inner_value).click();
 
-					calc_dist(document.getElementById(inner_value));	
-					
-
-					element_id = inner_value;
 				}
 				this.localStorage.removeItem("bestsellery");
 			}
@@ -2535,53 +2432,14 @@ Zabieg usuwania produktu należy wykonywac w salonie.</div>
 			else if(localStorage.getItem("pakiety") != null)
 			{
 				element_to_be_clicked = document.getElementById("pakiety_glowna");				
-				
-				var desc_full2 = element_to_be_clicked.parentElement.nextElementSibling;
-				
-				console.log("desc_full2.className: " + desc_full2.className);
-
-				get_height_of_hidden_div(desc_full2);
-				
-				console.log(document.getElementsByTagName("nav")[0]);//navbar element
-				console.log(document.getElementsByTagName("nav")[0].getBoundingClientRect());//navbar element positions
-				console.log(document.getElementsByTagName("nav")[0].getBoundingClientRect().top);//navbar element positions top
-				console.log(document.getElementsByTagName("nav")[0].getBoundingClientRect().height);//navbar element positions height
-	
-
-				invoked_by_scrolling_script = true;
 				element_to_be_clicked.click();
-				wait_until_div_unhide(element_to_be_clicked.parentElement.nextElementSibling, element_to_be_clicked.parentElement.nextElementSibling.offsetHeight);
-				console.log("calculated_distanse: " + calc_dist(element_to_be_clicked)); 			
-					
-
+				
 				element_to_be_clicked = document.getElementById(localStorage.getItem("pakiety"));								
 				element_to_be_clicked.click();
-				wait_until_div_unhide(element_to_be_clicked.parentElement.nextElementSibling, element_to_be_clicked.parentElement.nextElementSibling.offsetHeight);				
-				var distance = calc_dist(element_to_be_clicked);
-				console.log("calculated_distance: " + distance);
-		
 
-
-				var limit = (distance + window.innerHeight)*1.0;
-				wait_until_document_height_correct(limit);
-				window.scrollBy(0, distance);
-
-
-				element_id = localStorage.getItem("pakiety");	
-				
 				this.localStorage.removeItem("pakiety");
-			
-
-				console.log(document.getElementById("pakiety_glowna"));//navbar element
-				console.log(document.getElementById("pakiety_glowna").getBoundingClientRect());//navbar element positions
-				console.log(document.getElementById("pakiety_glowna").getBoundingClientRect().top);//navbar element positions top
-				console.log(document.getElementById("pakiety_glowna").getBoundingClientRect().height);//navbar element positions height
-				
-
 
 			}
-			console.log(element_id);
-			return element_id;	
 
 		});
 
