@@ -1004,6 +1004,43 @@ nav.navbar {
 	position: relative;
 }
 
+
+
+
+
+.col-md-8 .new
+{
+	display: inline-block;
+	width: 36px;
+	height: 36px;
+	line-height: 36px;
+	font-size: 36px;
+	text-align: center;
+	position: relative;
+}
+
+
+
+
+
+
+.pricelist-item .title .new,
+.pricelist-item2 .title2 .new
+{
+	display: inline-block;
+	width: 36px;
+	height: 36px;
+	line-height: 36px;
+	font-size: 36px;
+	text-align: center;
+	position: relative;
+}
+
+
+
+
+
+
 .pricelist-item .title .icon .fa,
 .pricelist-item2 .title2 .icon .fa
 {
